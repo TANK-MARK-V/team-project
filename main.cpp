@@ -2,18 +2,21 @@
 // Команда: Лавриненко (в. 20), Дворников (в. 40, техлид).
 #include <iostream>
 // === БЛОК ПОДКЛЮЧЕНИЙ: каждый участник добавляет свой заголовочный файл ===
-// #include "lavrinenko.h"
-// #include "dvornikov.h"
+#include "dvornikov.h"
 // === КОНЕЦ БЛОКА ПОДКЛЮЧЕНИЙ ===
 using namespace std;
 
     int main() {
+        system("chcp 65001");
         int choice;
+        double v, f, lambda, T;
         do {
             cout << "\n=== Командный проект: сборник расчётов ===\n";
             // === БЛОК МЕНЮ: каждый участник добавляет свои пункты ===
             // === КОНЕЦ БЛОКА МЕНЮ ===
             cout << "0. Выход\n";
+            cout << "1. Длина волны (v / f)\n";
+            cout << "2. Скорость волны (λ / T)\n";
             cout << "Выберите пункт: ";
             cin >> choice;
             switch (choice) {
@@ -22,9 +25,25 @@ using namespace std;
                 case 0:
                     cout << "Работа завершена.\n";
                     break;
+                case 1: {
+                    do {
+                        cout << "Введите v (м/с) и f (Гц): ";
+                        cin >> v >> f;
+                    } while (v < 0 || f <= 0);
+                    cout << "Длина волны λ = " << waveLength(v, f) << " м\n";
+                    break;
+                }
+                case 2: {
+                    do {
+                        cout << "Введите λ (м) и T (с): ";
+                        cin >> lambda >> T;
+                    } while (lambda < 0 || T <= 0);
+                    cout << "Скорость волны v = " << waveSpeed(lambda, T) << " м/с\n";
+                    break;
+                }
                 default:
                     cout << "Такого пункта нет.\n";
             }
         } while (choice != 0);
         return 0;
-    }
+}
